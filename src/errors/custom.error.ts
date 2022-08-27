@@ -8,6 +8,7 @@ export function customError(
   res: Response,
   next: NextFunction,
 ) {
+  
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       status: 'error',     

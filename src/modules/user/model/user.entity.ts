@@ -1,5 +1,7 @@
 import { hash } from 'bcryptjs';
+import { OneToOne } from 'typeorm';
 import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Address } from '../../address/model/address.entity';
 
 @Entity()
 export class User {
@@ -28,4 +30,7 @@ export class User {
   async hashedPassword() {
     this.password = await hash(this.password, 10);
   }
+
+  @OneToOne(() => Address, address => address.user)
+  address: Address;
 }
