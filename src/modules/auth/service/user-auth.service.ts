@@ -10,7 +10,6 @@ interface IAuth {
 }
 
 export class UserAuthService {
-
   async execute({ email, password }: IAuth) {
     const user = await userRepository.findOneBy({ email });
     
